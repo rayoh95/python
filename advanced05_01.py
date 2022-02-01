@@ -30,7 +30,7 @@ print('Ex2-7 : ', x == z)
 
 print()
 
-# 튜플 분변형의 비교
+# 튜플 불변형의 비교
 tuple1 = (10, 15, [100, 1000])
 tuple2 = (10, 15, [100, 1000])
 
@@ -51,7 +51,7 @@ tl3 = list(tl1)
 print('Ex4-1 : ', tl1 == tl2)
 print('Ex4-2 : ', tl1 is tl2)
 print('Ex4-3 : ', tl1 == tl3)
-print('Ex4-4 : ', tl1 == tl3)
+print('Ex4-4 : ', tl1 is tl3)
 
 # 증명
 tl1.append(100)
@@ -70,7 +70,7 @@ tl2[2] += (110, 120)    # 튜플 재 할당된 것이다.(새로운 객체 생�
 print('Ex4-8 : ', tl1)
 print('Ex4-9 : ', tl2)
 print('Ex4-10 : ', tl3)
-print(id[tl1[2]])
+print(id(tl1[2]))
 
 print()
 
@@ -104,7 +104,7 @@ print('Ex5-1 : ', id(basket1._products),
 print()
 
 basket1.put_prod('Orange')
-basket2.del_prod('Snak')
+basket2.del_prod('Snack')
 
 print('Ex5-3 : ', basket1._products)
 print('Ex5-4 : ', basket2._products)
