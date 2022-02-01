@@ -112,7 +112,7 @@ class ObjectS:
 s = ObjectS()
 
 print('Ex3-1 : ', s.__dict__)
-print('Ex3-2 : ', len(s))
+print('Ex3-2 : ', len(s))   # 객체 안에 len 메소드를 만들었기 떄문에 값이 나올 수 있는 것.
 print('Ex3-3 : ', len(s._numbers))
 print('Ex3-4 : ', s[1:100])
 print('Ex3-5 : ', s[-1])
@@ -149,6 +149,9 @@ print()
 # Sequence 상속
 # 요구 사항인 추상메소드를 모두 구현해야 동작
 
+# from collections.abc import Sequence
+
+# 상속을 통해 자식 클래스에서 인스턴스를 생성하는데 부모에서 (추상 메소드로) 정의된 해당 메소드들을 오버라이딩 해줘야 한다.
 class IterTestB(Sequence):
     def __getitem__(self, idx):
         return range(1, 50, 2)[idx]
@@ -166,6 +169,8 @@ print('Ex4-7 : ', 3 in i2[1:10])
 print()
 
 # abc 활용 예제
+
+# import abc
 
 
 class RandomMachine(abc.ABC):
@@ -189,10 +194,12 @@ class RandomMachine(abc.ABC):
                 break
             return tuple(sorted(items))
 
+# import random
+
 
 class CraneMachine(RandomMachine):
     def __init__(self, items):
-        self._randomizer = random.SystemRandom()
+        self._randomizer = random.SystemRandom()    # 실행때 마다 난수 생성
         self._items = []
         self.load(items)
 
@@ -211,7 +218,8 @@ class CraneMachine(RandomMachine):
 
 
 # 서브 클래스 확인
-print('Ex5-1 : ', issubclass(RandomMachine, CraneMachine))
+print('Ex5-1 : ', issubclass(RandomMachine, CraneMachine))  # False
+# True. 자식과 부모의 순서 중요.
 print('Ex5-1 : ', issubclass(CraneMachine, RandomMachine))
 
 # 상속 구조 확인
@@ -221,5 +229,5 @@ cm = CraneMachine(range(1, 100))  # 추상 메소드 구현 안하면 에러
 
 print('Ex5-4 : ', cm._items)
 print('Ex5-5 : ', cm.pick())
-print('Ex5-6 : ', cm())
-print('Ex5-7 : ', cm.inspect())
+print('Ex5-6 : ', cm())  # callable 확인
+print('Ex5-7 : ', cm.inspect())  # 부모의 메소드 사용 가능
